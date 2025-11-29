@@ -1,0 +1,20 @@
+name: MLProject
+env_type: python
+
+entry_points:
+  main:
+    parameters:
+      raw_data: {type: str, default: "data/raw_data.csv"}
+    command: "python src/main.py --raw_data {raw_data}"
+
+  etl:
+    parameters:
+      input_file: {type: str}
+      output_file: {type: str}
+    command: "python src/etl.py --input_path {input_file} --output_path {output_file}"
+
+  train:
+    parameters:
+      data_file: {type: str}
+      n_estimators: {type: int, default: 100}
+    command: "python src/train.py --data_path {data_file} --n_estimators {n_estimators}"
