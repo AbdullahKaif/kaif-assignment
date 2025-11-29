@@ -1,0 +1,16 @@
+name: MLOps Pipeline CI
+on: [push]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - name: Install dependencies
+        run: pip install mlflow dvc scikit-learn pandas numpy
+      - name: Test ETL Syntax
+        run: python src/etl.py --help
+      - name: Test Training Syntax
+        run: python src/train.py --help
